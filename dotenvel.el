@@ -30,9 +30,12 @@
                       (split-string quoteless "="))))
           lst))
 
-(defun dotenvel-get (field)
-  "Get the value of FIELD from dotenvel-env."
-  (car (cdr (assoc field dotenvel-env))))
+(defun dotenvel-get (field &optional default)
+  "Get the value of FIELD from dotenvel-env.
+Use DEFAULT if no value is found."
+  (or
+   (car (cdr (assoc field dotenvel-env)))
+   default))
 
 (defun dotenvel-load ()
   "Load the values from .env file."
