@@ -62,7 +62,7 @@
 (defun dotenvel-filter-entries (lst)
   "Filter out commented lines in LST."
   (seq-filter
-   (lambda (item) (not (s-starts-with-p "#" item)))
+   (lambda (item) (not (string-prefix-p "#" item)))
    lst))
 
 (defun dotenvel-parse-entries (lst)
