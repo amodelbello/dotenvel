@@ -6,7 +6,7 @@ Examples of such config items are font sizes, paths to executables such as `ispe
 
 ## Usage
 ```elisp
-(setq dotenvel-env-filepath [path to your .env file])
+(setq dotenvel-env-filepath "path to your .env file")
 ;; defaults to `.env` in your emacs config directory
 ```
 
