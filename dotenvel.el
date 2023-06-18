@@ -4,7 +4,7 @@
 ;; Maintainer: Amo DelBello
 ;; Version: 1.0.0
 ;; Package-Requires: ()
-;; Homepage: https://github.com/amodelbello/dotenv
+;; Homepage: https://github.com/amodelbello/dotenv.el
 ;; Keywords: dotenv, environment, configuration
 
 
