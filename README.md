@@ -22,12 +22,13 @@ Examples of such config items are font sizes, paths to executables such as `ispe
 ;; If no such variable exists, uses "default value".
 ```
 
-## Example - setting font
+## Example: setting font
 Value in .env file
 ```bash
 FONT="DejaVu Sans Mono-11"
 ```
 
+Emacs config
 ```elisp
 ;; load the .env file
 (dotenvel-load)
