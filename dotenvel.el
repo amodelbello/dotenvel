@@ -1,10 +1,10 @@
-;;; dotenvel.el --- summary -*- lexical-binding: t -*-
+;;; dotenv.el --- summary -*- lexical-binding: t -*-
 
 ;; Author: Amo DelBello
 ;; Maintainer: Amo DelBello
 ;; Version: 1.0.0
 ;; Package-Requires: ()
-;; Homepage: https://github.com/amodelbello/dotenvel
+;; Homepage: https://github.com/amodelbello/dotenv
 ;; Keywords: dotenv, environment, configuration
 
 
@@ -25,47 +25,47 @@
 
 ;;; Commentary:
 
-;; dotenvel is a package that allows the use of environment variables
+;; dotenv is a package that allows the use of environment variables
 ;; stored in a .env file, similar to a technique used in the node.js ecosystem.
 ;;
 ;; VARIABLES:
 ;;
-;; dotenvel-env-filepath  : Path to .env file (defaults to .emacs.d/.env)
-;; dotenvel-env           : alist that stores environment variables
+;; dotenv-env-filepath  : Path to .env file (defaults to .emacs.d/.env)
+;; dotenv-env           : alist that stores environment variables
 ;;
 ;; COMMANDS:
-;; dotenvel-load             : Loads the .env file into dotenvel-env
+;; dotenv-load             : Loads the .env file into dotenv-env
 ;;
 ;; FUNCTIONS:
-;; dotenvel-get              : Takes a string parameter and returns corresponding value
+;; dotenv-get              : Takes a string parameter and returns corresponding value
 
 ;;; Code:
 
-(defvar dotenvel-env-filepath (format "%s%s" user-emacs-directory ".env")
+(defvar dotenv-env-filepath (format "%s%s" user-emacs-directory ".env")
   "The path to the .env file.")
 
-(defvar dotenvel-env '()
+(defvar dotenv-env '()
   "The alist that stores .env variables.")
 
-(defun dotenvel-get-file-contents (filename)
+(defun dotenv-get-file-contents (filename)
   "Return the contents of FILENAME."
   (with-temp-buffer
     (insert-file-contents filename)
     (buffer-string)))
 
-(defun dotenvel-file-contents-to-list ()
+(defun dotenv-file-contents-to-list ()
   "Read the contents of env file and split elements into a list."
   (split-string
-   (dotenvel-get-file-contents dotenvel-env-filepath)
+   (dotenv-get-file-contents dotenv-env-filepath)
    "\\(\n+\\)"))
 
-(defun dotenvel-filter-entries (lst)
+(defun dotenv-filter-entries (lst)
   "Filter out commented lines in LST."
   (seq-filter
    (lambda (item) (not (string-prefix-p "#" item)))
    lst))
 
-(defun dotenvel-parse-entries (lst)
+(defun dotenv-parse-entries (lst)
   "Split the strings in LST by equal signs and trim whitespace and quotes."
   (mapcar (lambda (entry)
             (let ((quoteless (replace-regexp-in-string "['\"]" "" entry)))
@@ -73,20 +73,20 @@
                       (split-string quoteless "="))))
           lst))
 
-(defun dotenvel-load ()
+(defun dotenv-load ()
   "Load the values from .env file."
   (interactive)
-  (setq dotenvel-env (dotenvel-parse-entries
-                      (dotenvel-filter-entries
-                       (dotenvel-file-contents-to-list)))))
+  (setq dotenv-env (dotenv-parse-entries
+                    (dotenv-filter-entries
+                     (dotenv-file-contents-to-list)))))
 
-(defun dotenvel-get (field &optional default)
-  "Get the value of FIELD from dotenvel-env.
+(defun dotenv-get (field &optional default)
+  "Get the value of FIELD from dotenv-env.
 Use DEFAULT if no value is found."
   (or
-   (car (cdr (assoc field dotenvel-env)))
+   (car (cdr (assoc field dotenv-env)))
    default))
 
-(provide 'dotenvel)
+(provide 'dotenv)
 
-;;; dotenvel.el ends here
+;;; dotenv.el ends here

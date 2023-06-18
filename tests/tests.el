@@ -3,8 +3,8 @@
 ;; Author: Amo DelBello
 ;; Maintainer: Amo DelBello
 ;; Version: 1.0.0
-;; Package-Requires: (dotenvel)
-;; Homepage: https://github.com/amodelbello/dotenvel
+;; Package-Requires: (dotenv)
+;; Homepage: https://github.com/amodelbello/dotenv
 ;; Keywords: dotenv, environment, configuration
 
 
@@ -32,34 +32,34 @@
 
 ;;; Code:
 
-;; dotenvel-file-contents-to-list
-(ert-deftest dotenvel-file-contents-to-list-test ()
+;; dotenv-file-contents-to-list
+(ert-deftest dotenv-file-contents-to-list-test ()
   "Test that a file is loaded and split by newlines."
-  (setq dotenvel-env-filepath ".env-normal")
-  (setq result (dotenvel-file-contents-to-list))
+  (setq dotenv-env-filepath ".env-normal")
+  (setq result (dotenv-file-contents-to-list))
   (should (= 2 (length result)))
 
-  (setq dotenvel-env-filepath ".env-comments")
-  (setq result (dotenvel-file-contents-to-list))
+  (setq dotenv-env-filepath ".env-comments")
+  (setq result (dotenv-file-contents-to-list))
   (should (= 3 (length result))))
 
 
-;; dotenvel-filter-entries
-(ert-deftest dotenvel-filter-entries-test ()
+;; dotenv-filter-entries
+(ert-deftest dotenv-filter-entries-test ()
   "Test that comments are filtered out."
   (setq lst '("TEST=one"
               "# Comment"))
-  (setq result (dotenvel-filter-entries lst))
+  (setq result (dotenv-filter-entries lst))
   (should (= 1 (length result)))
 
   (setq lst2 '("TEST=one"
                "NOT=a comment" ))
-  (setq result (dotenvel-filter-entries lst2))
+  (setq result (dotenv-filter-entries lst2))
   (should (= 2 (length result))))
 
 
-;; dotenvel-parse-entries
-(ert-deftest dotenvel-parse-entries-test ()
+;; dotenv-parse-entries
+(ert-deftest dotenv-parse-entries-test ()
   "Test that spaces and quotes are removed."
   (setq lst '(" TEST = one"
               "TEST2= two"
@@ -69,22 +69,22 @@
                    '("TEST2" "two")
                    '("TEST3" "three")
                    '("TEST4" "four")))
-  (setq got (dotenvel-parse-entries lst))
+  (setq got (dotenv-parse-entries lst))
   (should (equal got want)))
 
 
-;; dotenvel-get
-(ert-deftest dotenvel-get ()
+;; dotenv-get
+(ert-deftest dotenv-get ()
   "Test that you can get an env variable from a loaded config."
-  (setq old-env-filepath dotenvel-env-filepath)
-  (setq dotenvel-env-filepath ".env-comments")
-  (dotenvel-load)
-  (should (string-equal "does not exist" (dotenvel-get "OTHER" "does not exist")))
-  (should (string-equal "test-val" (dotenvel-get "TEST_VAL" "default")))
-  (should (string-equal "test-val2" (dotenvel-get "TEST_VAL2" "default")))
+  (setq old-env-filepath dotenv-env-filepath)
+  (setq dotenv-env-filepath ".env-comments")
+  (dotenv-load)
+  (should (string-equal "does not exist" (dotenv-get "OTHER" "does not exist")))
+  (should (string-equal "test-val" (dotenv-get "TEST_VAL" "default")))
+  (should (string-equal "test-val2" (dotenv-get "TEST_VAL2" "default")))
 
   ;; reload real config
-  (setq dotenvel-env-filepath old-env-filepath)
-  (dotenvel-load))
+  (setq dotenv-env-filepath old-env-filepath)
+  (dotenv-load))
 
 ;;; tests.el ends here
