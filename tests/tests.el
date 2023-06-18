@@ -27,9 +27,7 @@
 
 ;;; Commentary:
 
-;; This packages provides the tests for `ert'.  They can be executed
-;; from the command line as well by calling "make test".
-
+;; This packages provides the tests for `ert'.
 ;; Note: you must run the tests from this file after buffer evaluation.
 ;; Otherwise the relative paths below will not work.
 
