@@ -30,6 +30,9 @@
 ;; This packages provides the tests for `ert'.  They can be executed
 ;; from the command line as well by calling "make test".
 
+;; Note: you must run the tests from this file after buffer evaluation.
+;; Otherwise the relative paths below will not work.
+
 ;;; Code:
 
 (ert-deftest example-test ()
@@ -38,11 +41,11 @@
 
 ;; dotenvel-file-contents-to-list
 (ert-deftest dotenvel-file-contents-to-list-test ()
-  (setq dotenvel-env-filepath "tests/.env-normal")
+  (setq dotenvel-env-filepath ".env-normal")
   (setq result (dotenvel-file-contents-to-list))
   (should (= 2 (length result)))
 
-  (setq dotenvel-env-filepath "tests/.env-comments")
+  (setq dotenvel-env-filepath ".env-comments")
   (setq result (dotenvel-file-contents-to-list))
   (should (= 3 (length result))))
 
@@ -75,7 +78,7 @@
 ;; dotenvel-get
 (ert-deftest dotenvel-get ()
   (setq old-env-filepath dotenvel-env-filepath)
-  (setq dotenvel-env-filepath "tests/.env-comments")
+  (setq dotenvel-env-filepath ".env-comments")
   (dotenvel-load)
   (should (string-equal "does not exist" (dotenvel-get "OTHER" "does not exist")))
   (should (string-equal "test-val" (dotenvel-get "TEST_VAL" "default")))
