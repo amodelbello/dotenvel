@@ -87,6 +87,4 @@
   (setq dotenvel-env-filepath old-env-filepath)
   (dotenvel-load))
 
-(provide 'tests)
-
 ;;; tests.el ends here
