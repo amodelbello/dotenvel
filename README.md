@@ -41,3 +41,6 @@ The above code changes the font to `DejaVu Sans Mono-11`. If no value had been s
 ## Tips
 * It's easiest just to use the default name and location for the .env file - `.env` in your `.emacs.d` directory.
 * You should add the name/path of your .env file to your `.gitignore` file.
+
+## Disclaimer
+This package doesn't support the full dotenv spec but should work for most use cases. It filters out commented lines (prefixed with a `#`), and single and double quotes. Multiline values are not supported.
