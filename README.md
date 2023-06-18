@@ -36,7 +36,7 @@ Emacs config
 ;; somewhere in your emacs config
 (set-frame-font (dotenvel-get "FONT" "DejaVu Sans Mono-13") nil t)
 ```
-The above code changes the font to `DejaVu Sans Mono-11`. If no value had been specified in the .env file, `DejaVu Sans Mono-13` would have been loaded as the default.
+The above code changes the font to `DejaVu Sans Mono-11`. If no value had been specified in the .env file, `DejaVu Sans Mono-13` would have been loaded instead.
 
 ## Tips
 * It's easiest just to use the default name and location for the .env file - `.env` in your `.emacs.d` directory.
