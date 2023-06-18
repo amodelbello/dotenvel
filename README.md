@@ -1,6 +1,6 @@
 # dotenvel
 
-dotenv.el makes it easy to keep track of emacs configuration variables across multiple environments and machines. It aims to mimic the functionality found in [https://github.com/motdotla/dotenv](https://github.com/motdotla/dotenv), allowing you to specify values for config items that are likely to change across machines.
+dotenvel makes it easy to keep track of emacs configuration variables across multiple environments and machines. It aims to mimic the functionality found in [https://github.com/motdotla/dotenv](https://github.com/motdotla/dotenv), allowing you to specify values for config items that are likely to change across machines.
 
 Examples of such config items are font sizes, paths to executables such as `ispell`, and authentication tokens.
 
