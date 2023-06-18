@@ -68,7 +68,7 @@
 (defun dotenvel-parse-entries (lst)
   "Split the strings in LST by equal signs and trim whitespace and quotes."
   (mapcar (lambda (entry)
-            (let ((quoteless (replace-regexp-in-string "\"" "" entry)))
+            (let ((quoteless (replace-regexp-in-string "['\"]" "" entry)))
               (mapcar #'string-trim
                       (split-string quoteless "="))))
           lst))
