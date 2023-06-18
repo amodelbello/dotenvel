@@ -1,4 +1,3 @@
-;; -*- no sir flycheck-disabled-checkers: emacs-lisp -*-
 ;;; tests.el --- summary -*- lexical-binding: t -*-
 
 ;; Author: Amo DelBello
@@ -33,12 +32,9 @@
 
 ;;; Code:
 
-(ert-deftest example-test ()
-  (should (= (+ 9 2) 11)))
-
-
 ;; dotenvel-file-contents-to-list
 (ert-deftest dotenvel-file-contents-to-list-test ()
+  "Test that a file is loaded and split by newlines."
   (setq dotenvel-env-filepath ".env-normal")
   (setq result (dotenvel-file-contents-to-list))
   (should (= 2 (length result)))
@@ -50,6 +46,7 @@
 
 ;; dotenvel-filter-entries
 (ert-deftest dotenvel-filter-entries-test ()
+  "Test that comments are filtered out."
   (setq lst '("TEST=one"
               "# Comment"))
   (setq result (dotenvel-filter-entries lst))
@@ -63,18 +60,22 @@
 
 ;; dotenvel-parse-entries
 (ert-deftest dotenvel-parse-entries-test ()
+  "Test that spaces and quotes are removed."
   (setq lst '(" TEST = one"
               "TEST2= two"
-              "TEST3 =\"three\""))
+              "TEST3 =\"three\""
+              "TEST4= 'four'"))
   (setq want (list '("TEST" "one")
                    '("TEST2" "two")
-                   '("TEST3" "three")))
+                   '("TEST3" "three")
+                   '("TEST4" "four")))
   (setq got (dotenvel-parse-entries lst))
   (should (equal got want)))
 
 
 ;; dotenvel-get
 (ert-deftest dotenvel-get ()
+  "Test that you can get an env variable from a loaded config."
   (setq old-env-filepath dotenvel-env-filepath)
   (setq dotenvel-env-filepath ".env-comments")
   (dotenvel-load)
