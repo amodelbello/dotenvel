@@ -3,9 +3,9 @@
 ;; Author: Amo DelBello
 ;; Maintainer: Amo DelBello
 ;; Version: 1.0.0
-;; Package-Requires: ()
+;; Package-Requires: ((emacs "25.1"))
 ;; Homepage: https://github.com/amodelbello/dotenv.el
-;; Keywords: dotenv, environment, configuration
+;; Keywords: convenience, dotenv, environment, configuration
 
 
 ;; This file is not part of GNU Emacs
