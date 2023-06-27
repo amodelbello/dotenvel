@@ -1,4 +1,4 @@
-;;; dotenv.el --- summary -*- lexical-binding: t -*-
+;;; dotenv.el --- Dotenv for config variables -*- lexical-binding: t -*-
 
 ;; Author: Amo DelBello
 ;; Maintainer: Amo DelBello
